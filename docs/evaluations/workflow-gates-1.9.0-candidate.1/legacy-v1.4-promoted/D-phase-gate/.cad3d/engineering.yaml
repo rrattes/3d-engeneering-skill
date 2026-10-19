@@ -1,0 +1,32 @@
+engineering:
+  schema_version: 1
+  workflow_level: product
+  model_gate: true
+  project:
+    name: workspace
+    class: TODO
+    purpose: TODO
+    units: mm
+  operating_conditions: []
+  measurements: []
+  external_interfaces: []
+  acceptance_criteria: []
+  risks_and_unknowns: []
+  requirements: []
+  functional_architecture:
+    subsystems: []
+    flows: []
+    operating_modes: []
+    failure_modes: []
+  mechanical_architecture:
+    components: []
+    interfaces: []
+    assembly_steps: []
+    maintenance_access: []
+    print_split: []
+  workflow_dispositions: []
+  manufacturing:
+    physical_validation: NOT_EVALUATED
+  visualization:
+    hidden_components: []
+    critical_interfaces: []

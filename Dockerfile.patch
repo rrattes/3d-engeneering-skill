@@ -1,0 +1,13 @@
+# Local code-only packaging. Base image IDs used are recorded in release evidence.
+# Full dependency rebuilds use Dockerfile / Dockerfile.orca instead.
+ARG CAD3D_BASE_IMAGE=cad3d-engineering:1.4.0
+ARG ORCA_BASE_IMAGE=cad3d-orca:2.4.2
+FROM ${CAD3D_BASE_IMAGE} AS cad3d
+COPY cli/ /opt/cad3d/
+COPY templates/project/ /opt/cad3d/template/
+COPY profiles/ /opt/cad3d/profiles/
+LABEL org.opencontainers.image.version="1.9.0"
+
+FROM ${ORCA_BASE_IMAGE} AS orca
+COPY scripts/orca-engine.py /opt/orca/bin/orca-engine.py
+LABEL org.cad3d.wrapper.version="1.4.2"

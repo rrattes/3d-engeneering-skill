@@ -1,0 +1,45 @@
+id: calibration-sliding-pair
+contact_tolerance_mm: 0.01
+min_wall_mm: 1.2
+components:
+  - id: datum-block-001
+    part: datum_block
+    position_mm: [0, 0, 0]
+    rotation_deg: [0, 0, 0]
+    wall_checks:
+      - id: declared-block-wall
+        nominal_mm: 2.0
+  - id: slider-001
+    part: slider
+    position_mm: [12.8, 0, 0]
+    rotation_deg: [0, 0, 0]
+interfaces:
+  - id: slider-clearance-001
+    a: datum-block-001
+    b: slider-001
+    type: sliding
+    clearance_mm: 0.25
+    tolerance_mm: 0.05
+    intentional_contact: false
+    face_a:
+      ref: datum-block-guide-face
+      surface: plane
+      center_mm: [10, 0, 0]
+      normal: [1, 0, 0]
+      center_tolerance_mm: 0.01
+    face_b:
+      ref: slider-mating-face
+      surface: plane
+      center_mm: [10.3, 0, 0]
+      normal: [-1, 0, 0]
+      center_tolerance_mm: 0.01
+assembly_steps:
+  - id: side-entry-guide
+    moving_component: slider-001
+    direction_mm: [0, -1, 0]
+    travel_mm: 10
+    samples: 20
+constraints:
+  - type: translational
+    axis: X
+    note: Demonstration interface; no kinematic solver is claimed.

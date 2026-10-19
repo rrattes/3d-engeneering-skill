@@ -1,0 +1,7 @@
+project:
+  name: calibration-box
+  units: mm
+  model: src/model.py
+  parameters: params.yaml
+  output: build/outputs
+  printer_profile: bambu-a1-pla

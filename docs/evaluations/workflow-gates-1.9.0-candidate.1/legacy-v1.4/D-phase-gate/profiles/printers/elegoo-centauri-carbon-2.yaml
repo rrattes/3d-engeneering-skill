@@ -1,0 +1,9 @@
+name: Elegoo Centauri Carbon 2 Combo
+source: https://www.elegoo.com/products/centauri-carbon-2-combo (nominal build volume); remaining process assumptions are uncalibrated
+build_volume_mm: [256, 256, 256]
+operational_margin_mm: [5, 5, 5]
+nozzle_diameter_mm: 0.4
+layer_height_mm: 0.20
+max_overhang_degrees: 45
+calibrated: false
+materials_supported_requires_slicer_profile: [PLA, PETG, PETG-CF, ABS, ASA]

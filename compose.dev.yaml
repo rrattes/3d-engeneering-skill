@@ -1,0 +1,21 @@
+# Explicit source overlay for local evaluation; base images remain unchanged.
+services:
+  cad3d:
+    volumes:
+      - ./cli/artifact_publication.py:/opt/cad3d/artifact_publication.py:ro
+      - ./cli/cad3d.py:/opt/cad3d/cad3d.py:ro
+      - ./cli/cad3d_visualization.py:/opt/cad3d/cad3d_visualization.py:ro
+      - ./cli/calibration.py:/opt/cad3d/calibration.py:ro
+      - ./cli/commercial_components.py:/opt/cad3d/commercial_components.py:ro
+      - ./cli/component_catalog.py:/opt/cad3d/component_catalog.py:ro
+      - ./cli/manufacturing.py:/opt/cad3d/manufacturing.py:ro
+      - ./cli/product_engineering.py:/opt/cad3d/product_engineering.py:ro
+      - ./cli/service_states.py:/opt/cad3d/service_states.py:ro
+      - ./cli/slicer_bridge.py:/opt/cad3d/slicer_bridge.py:ro
+      - ./cli/source_fingerprint.py:/opt/cad3d/source_fingerprint.py:ro
+      - ./cli/validation.py:/opt/cad3d/validation.py:ro
+      - ./templates/project:/opt/cad3d/template:ro
+      - ./profiles:/opt/cad3d/profiles:ro
+  orca:
+    volumes:
+      - ./scripts/orca-engine.py:/opt/orca/bin/orca-engine.py:ro

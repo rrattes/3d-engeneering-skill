@@ -1,0 +1,7 @@
+project:
+  name: enclosure-fit-demonstrator
+  units: mm
+  model: src/model.py
+  parameters: params.yaml
+  output: build/outputs
+  printer_profile: bambu-a1

@@ -1,0 +1,7 @@
+printer:
+  profile: bambu-a1
+material:
+  profile: pla
+demo:
+  block_mm: [20, 20, 4]
+  slider_mm: [5, 5, 3]

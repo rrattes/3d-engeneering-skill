@@ -1,0 +1,10 @@
+parts:
+  chassis: {kind: manufactured, process: fdm, material: ASA-provisional, color: '#293443'}
+  fan_plate: {kind: manufactured, process: fdm, material: ASA-provisional, color: '#c5ccd4'}
+  psu_reference: {kind: commercial, process: none, material: unverified-reference, color: '#646c77'}
+  mounting_hardware: {kind: hardware, process: none, material: schematic-M3-kit, color: '#aeb8c0'}
+components:
+  - {id: chassis, part: chassis}
+  - {id: fan_plate, part: fan_plate}
+  - {id: psu, part: psu_reference}
+  - {id: mounting_hardware, part: mounting_hardware}

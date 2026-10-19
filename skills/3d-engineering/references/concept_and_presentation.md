@@ -1,0 +1,9 @@
+# Concept, derived parameters and presentation
+
+For consequential choices, compare plausible massing/layout alternatives before detailing. Tie differences to useful volume, interfaces, airflow, manufacture, seams, visible fixings and maintenance. A simple part can use a direct justified choice. Respect choices/authorization already supplied; do not add repeated approval loops.
+
+Define inputs separately from derived datums. `build(params)` must actually consume its input. Calculate fan/PSU positions, hole patterns, wall/floor stack, screw engagement and openings from those datums. Reject unsupported combinations with concrete constraints. Demonstrate relevant parameter changes against BREP/interfaces/BOM, not only changed dictionary values. The fixture `examples/evolution/parametric-enclosure` illustrates supported variations; it is not a physical product template.
+
+Use `cad3d render --view presentation` for material-colored opaque context, `--view engineering` for technical views and `--view parts` for an individual manufactured-part gallery. Default build rendering also generates the presentation/gallery. Gallery framing is per part, not a common dimensional scale. Inspect screenshots for shape, orientation, crop, flat-surface artifacts and legibility; separate model viewport and legend do not by themselves prove good design. Compare views against the user's brief. An exploded diagram explains separation, not continuous removal.
+
+Prototype publication uses `cad3d release --target cad-prototype`; `build`/`export` outputs are working artifacts. Read the selected delivery from `build/delivery/current.json`, not a directory full of older files. Release retains failed run diagnostics and does not replace a prior selected delivery on validation/export failure. Physical validation remains independent.

@@ -1,0 +1,6 @@
+project:
+  name: assembly-clearance-demo
+  model: src/model.py
+  parameters: params.yaml
+  output: build/outputs
+  printer_profile: bambu-a1

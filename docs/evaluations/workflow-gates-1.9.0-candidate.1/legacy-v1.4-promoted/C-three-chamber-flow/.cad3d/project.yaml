@@ -1,0 +1,7 @@
+project:
+  name: three-chamber-flow-demonstrator
+  units: mm
+  model: src/model.py
+  parameters: params.yaml
+  output: build/outputs
+  printer_profile: elegoo-centauri-carbon-2

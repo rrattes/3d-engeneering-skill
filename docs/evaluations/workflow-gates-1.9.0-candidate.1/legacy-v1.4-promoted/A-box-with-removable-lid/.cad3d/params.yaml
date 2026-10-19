@@ -1,0 +1,10 @@
+box:
+  length: 60.0
+  width: 40.0
+  height: 24.0
+  wall: 2.0
+  clearance: 0.2
+printer:
+  profile: bambu-a1
+material:
+  profile: petg

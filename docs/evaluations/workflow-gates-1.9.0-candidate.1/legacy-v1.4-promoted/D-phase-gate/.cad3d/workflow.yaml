@@ -1,0 +1,11 @@
+workflow:
+  schema_version: 1
+  required_views:
+    - iso
+    - top
+    - front
+    - side
+    - section
+    - exploded
+    - hidden
+  warning_dispositions_field: engineering.workflow_dispositions

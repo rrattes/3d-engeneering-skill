@@ -1,0 +1,6 @@
+name: PLA (generic initial profile)
+calibrated: false
+fit_clearance_mm: 0.30
+shrinkage_percent: 0.0
+min_wall_mm: 1.2
+notes: Tune using printed calibration coupons for the exact printer, filament, orientation and slicer profile.

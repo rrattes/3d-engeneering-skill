@@ -1,0 +1,22 @@
+id: enclosure-removable-cover-demo
+contact_tolerance_mm: 0.02
+min_wall_mm: 1.2
+components:
+  - {id: enclosure-body, part: body, position_mm: [0, 0, 0], rotation_deg: [0, 0, 0]}
+  - {id: service-lid, part: lid, position_mm: [0, 0, 0], rotation_deg: [0, 0, 0]}
+interfaces:
+  - id: cover-fit
+    a: enclosure-body
+    b: service-lid
+    type: removable_cover
+    clearance_mm: 0
+    male_size_mm: 55.6
+    female_size_mm: 56.0
+    intentional_contact: true
+assembly_steps:
+  - id: lift-cover
+    moving_component: service-lid
+    direction_mm: [0, 0, -1]
+    travel_mm: 30
+    samples: 16
+    allowed_contact_pairs: [service-lid::enclosure-body]

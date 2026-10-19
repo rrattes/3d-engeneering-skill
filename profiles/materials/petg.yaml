@@ -1,0 +1,13 @@
+name: PETG (generic initial profile)
+calibrated: false
+fit_clearance_mm: 0.40
+shrinkage_percent: 0.0
+min_wall_mm: 1.2
+notes: Initial assumptions only; verify dimensional behavior and stringing for the actual setup.
+fit_ranges_mm:
+  sliding: [0.25, 0.50]
+  press_fit: [-0.20, -0.04]
+  pin_hole: [0.25, 0.50]
+  removable_cover: [0.30, 0.60]
+  rail_guide: [0.25, 0.50]
+fit_ranges_status: generic uncalibrated starting values; verify with dimensional coupons on each printer material slicer combination

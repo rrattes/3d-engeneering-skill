@@ -1,0 +1,4 @@
+case: {width: 300, depth: 210, height: 70, wall: 3, floor: 4}
+fan: {size: 80, pitch: 71.5, height: 25}
+psu: {length: 100, width: 60, height: 40}
+clearance: 3

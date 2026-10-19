@@ -1,0 +1,48 @@
+FROM ubuntu:24.04
+
+ARG ORCA_VERSION=2.4.2
+ARG ORCA_APPIMAGE_SHA256=d12fb8c8eac1aecd2dfb6377acd48f994f8fa439ed5292fa532dd82880f029fd
+ARG TARGETARCH
+
+LABEL org.opencontainers.image.title="CAD3D OrcaSlicer Manufacturing Engine" \
+      org.opencontainers.image.version="${ORCA_VERSION}" \
+      org.opencontainers.image.source="https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/v${ORCA_VERSION}" \
+      org.opencontainers.image.licenses="AGPL-3.0-or-later"
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    APPDIR=/opt/orca/AppDir \
+    LC_ALL=C \
+    LANG=C \
+    HOME=/tmp/orca-home \
+    XDG_CONFIG_HOME=/tmp/orca-config \
+    XDG_CACHE_HOME=/tmp/orca-cache \
+    DISPLAY=
+
+RUN test "$TARGETARCH" = "amd64" \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends ca-certificates curl squashfs-tools libwebkit2gtk-4.1-0 libmspack0 \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /opt/orca /tmp/orca-home /tmp/orca-config /tmp/orca-cache \
+ && curl --fail --location --retry 3 --output /tmp/orca.AppImage \
+      "https://github.com/OrcaSlicer/OrcaSlicer/releases/download/v${ORCA_VERSION}/OrcaSlicer_Linux_AppImage_Ubuntu2404_V${ORCA_VERSION}.AppImage" \
+ && echo "${ORCA_APPIMAGE_SHA256}  /tmp/orca.AppImage" | sha256sum --check --status \
+ && chmod +x /tmp/orca.AppImage \
+ && cd /opt/orca \
+ && /tmp/orca.AppImage --appimage-extract >/dev/null \
+ && mv squashfs-root AppDir \
+ && rm -f /tmp/orca.AppImage \
+ && chmod 1777 /tmp/orca-home /tmp/orca-config /tmp/orca-cache
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends python3 libpython3.12-stdlib libopengl0 libglu1-mesa libsm6 libice6 \
+ && rm -rf /var/lib/apt/lists/*
+
+COPY scripts/orca-engine.py /opt/orca/bin/orca-engine.py
+COPY licenses/ORCASLICER-LICENSE.txt /usr/share/licenses/orcaslicer/LICENSE.txt
+RUN printf '#!/bin/sh\nexport XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/tmp/orca-runtime}"\nmkdir -p "$HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_RUNTIME_DIR"\nchmod 0700 "$XDG_RUNTIME_DIR"\nexec /usr/bin/python3 /opt/orca/bin/orca-engine.py "$@"\n' > /opt/orca/bin/cad3d-orca \
+ && chmod 0555 /opt/orca/bin/orca-engine.py /opt/orca/bin/cad3d-orca
+
+WORKDIR /workspace
+USER 1000:1000
+ENTRYPOINT ["/opt/orca/bin/cad3d-orca"]

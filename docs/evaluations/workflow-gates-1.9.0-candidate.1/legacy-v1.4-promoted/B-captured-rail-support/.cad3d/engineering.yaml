@@ -1,0 +1,86 @@
+engineering:
+  schema_version: 1
+  workflow_level: product
+  model_gate: true
+  project:
+    name: captured-rail-support
+    class: structural_support_assembly
+    purpose: Support a generic upright with a guided and service-removable rail joint.
+    units: mm
+  operating_conditions:
+    - {id: ENV-1, condition: static bench demonstrator, status: design_assumption}
+  measurements:
+    - {id: DEMO-1, quantity: rail throat, value_mm: 4.0, confidence: assumption, uncertainty: nominal demo geometry only; no printer calibration}
+  external_interfaces:
+    - {id: EXT-1, type: mounting datum, description: underside of base at Z0}
+    - {id: EXT-2, type: payload interface, description: generic upright plate, strength not rated}
+  acceptance_criteria:
+    - {id: AC-1, method: OCP collision and fit, threshold: no volumetric collision and profile fit in band}
+    - {id: AC-2, method: sampled insertion path, threshold: clear 35 mm service extraction}
+  risks_and_unknowns:
+    - {id: R-1, severity: major, status: open, description: structural load capacity and fatigue are not calculated}
+    - {id: R-2, severity: major, status: open, description: printed rail friction and dimensional variation are uncalibrated}
+  requirements:
+    - id: REQ-RAIL-FIT
+      description: Rail neck fits the track throat in the selected PETG profile band.
+      subsystem: retention
+      components: [base, upright]
+      critical: true
+      verification:
+        method: evidence
+        status: PASS
+        evidence:
+          - {path: build/outputs/validation.json, json_pointer: /assembly/fit_checks/0/status, expected: PASS}
+    - id: REQ-SERVICE-REMOVAL
+      description: Upright can be removed along the track axis without collision.
+      subsystem: service
+      components: [base, upright]
+      critical: true
+      verification:
+        method: evidence
+        status: PASS
+        evidence:
+          - {path: build/outputs/validation.json, json_pointer: /assembly/assembly_sequence/status, expected: PASS}
+  functional_architecture:
+    subsystems:
+      - {id: support, purpose: Transfer support reactions to the base datum}
+      - {id: retention, purpose: Constrain lateral and vertical motion of the upright}
+      - {id: service, purpose: Permit deliberate removal along the open rail axis}
+    flows:
+      - {id: load-path, kind: force, path: [support, retention]}
+      - {id: service-motion, kind: motion, path: [retention, service]}
+    operating_modes:
+      - {id: installed, description: toe captured beneath the rail lips}
+      - {id: service, description: upright slides out along X minus}
+    failure_modes:
+      - {id: pullout, effect: upright slides along X, control: add an end stop if service movement must be prevented}
+      - {id: overload, effect: rail or arm fractures, control: establish load envelope and test prototype}
+  mechanical_architecture:
+    components:
+      - id: base
+        part: base
+        function: Provide mounting datum and female captured rail.
+        retention: {method: fixed_to_datum, datum: underside Z0, fastener_interface: external mounting surface}
+      - id: upright
+        part: upright
+        function: Carry generic payload and male T tongue.
+        retention: {method: captured_rail, interface_ids: [captured-slide], held_axes: [y, z], release_axis: x}
+    interfaces:
+      - id: captured-slide
+        components: [base, upright]
+        kind: T-slot sliding capture
+        positioning: base X-axis track and Z10 mm rail underside datum
+        tolerance_profile: selected PETG rail_guide profile
+    assembly_steps:
+      - {id: insert-upright, sequence: 1, action: slide toe from open X-minus end until seated}
+      - {id: remove-upright, sequence: 2, action: slide upright toward X-minus}
+    maintenance_access:
+      - {id: rail-end, action: keep one track end accessible for extraction}
+    print_split:
+      - {part: base, orientation: broad datum face on bed}
+      - {part: upright, orientation: inspect rail overhang before slicing}
+  manufacturing:
+    physical_validation: NOT_EVALUATED
+  visualization:
+    hidden_components: [upright]
+    critical_interfaces: [captured-slide]

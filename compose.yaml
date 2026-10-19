@@ -1,0 +1,55 @@
+services:
+  cad3d:
+    image: ${CAD3D_IMAGE:-cad3d-engineering:1.9.0}
+    build:
+      context: .
+      args:
+        UID: ${CAD3D_UID:-1000}
+        GID: ${CAD3D_GID:-1000}
+    network_mode: none
+    working_dir: /workspace
+    environment:
+      PYVISTA_OFF_SCREEN: "true"
+      VTK_DEFAULT_OPENGL_WINDOW: vtkEGLRenderWindow
+      XDG_CACHE_HOME: /tmp/.cache
+    volumes:
+      - type: bind
+        source: ${CAD3D_PROJECT:-.}
+        target: /workspace
+    command: ["doctor"]
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=256m
+    security_opt:
+      - no-new-privileges:true
+  orca:
+    image: cad3d-orca:2.4.2-cad3d.1.4.2
+    build:
+      context: .
+      dockerfile: Dockerfile.orca
+      args:
+        ORCA_VERSION: 2.4.2
+    network_mode: none
+    working_dir: /workspace
+    user: "${CAD3D_UID:-1000}:${CAD3D_GID:-1000}"
+    environment:
+      HOME: /tmp/orca-home
+      XDG_CONFIG_HOME: /tmp/orca-config
+      XDG_CACHE_HOME: /tmp/orca-cache
+      XDG_RUNTIME_DIR: /tmp/orca-runtime
+      CAD3D_ORCA_VERSION: 2.4.2
+    volumes:
+      - type: bind
+        source: ${CAD3D_PROJECT:-.}
+        target: /workspace
+    command: ["doctor"]
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=${CAD3D_ORCA_TMP_SIZE:-4g},mode=1777
+    cpus: ${CAD3D_ORCA_CPUS:-4}
+    mem_limit: ${CAD3D_ORCA_MEMORY:-8g}
+    pids_limit: ${CAD3D_ORCA_PIDS:-512}
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true

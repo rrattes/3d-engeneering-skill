@@ -1,0 +1,6 @@
+project:
+  name: parametric-propagation-fixture
+  model: src/model.py
+  parameters: params.yaml
+  units: mm
+  output: build/outputs

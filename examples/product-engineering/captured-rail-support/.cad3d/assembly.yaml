@@ -1,0 +1,21 @@
+id: captured-rail-support-demo
+contact_tolerance_mm: 0.02
+components:
+  - {id: base, part: base, position_mm: [0, 0, 0], rotation_deg: [0, 0, 0]}
+  - {id: upright, part: upright, position_mm: [0, 0, 0], rotation_deg: [0, 0, 0]}
+interfaces:
+  - id: captured-slide
+    a: base
+    b: upright
+    type: rail_guide
+    clearance_mm: 0
+    male_size_mm: 3.6
+    female_size_mm: 4.0
+    intentional_contact: true
+assembly_steps:
+  - id: remove-upright
+    moving_component: upright
+    direction_mm: [1, 0, 0]
+    travel_mm: 35
+    samples: 24
+    allowed_contact_pairs: [upright::base]

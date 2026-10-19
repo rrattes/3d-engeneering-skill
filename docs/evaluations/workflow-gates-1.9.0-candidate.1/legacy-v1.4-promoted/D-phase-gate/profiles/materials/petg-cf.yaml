@@ -1,0 +1,6 @@
+name: PETG-CF (generic initial profile)
+calibrated: false
+fit_clearance_mm: 0.40
+shrinkage_percent: 0.0
+min_wall_mm: 1.6
+notes: Abrasion-resistant nozzle compatibility must be checked against printer configuration.

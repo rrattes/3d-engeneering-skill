@@ -1,0 +1,493 @@
+{
+  "suite": "CAD3D Engineering V1.4 acceptance",
+  "status": "PASS",
+  "check_count": 35,
+  "checks": [
+    {
+      "name": "command build",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": "  \"measured_fit_calibration\": null,\n      \"fastener_stacks\": [],\n      \"tolerance_stacks\": [],\n      \"fit_checks\": [\n        {\n          \"id\": \"cover-fit\",\n          \"type\": \"removable_cover\",\n          \"status\": \"PASS\",\n          \"male_nominal_mm\": 55.6,\n          \"female_nominal_mm\": 56.0,\n          \"nominal_clearance_mm\": 0.3999999999999986,\n          \"allowed_range_mm\": [\n            0.3,\n            0.6\n          ],\n          \"basis\": \"declared_parametric_dimensions; B-rep interference remains independently checked\"\n        }\n      ],\n      \"functional_face_checks\": [],\n      \"wall_checks\": [],\n      \"assembly_sequence\": {\n        \"status\": \"PASS\",\n        \"steps\": [\n          {\n            \"id\": \"lift-cover\",\n            \"status\": \"PASS\",\n            \"moving_component\": \"service-lid\",\n            \"direction_unit\": [\n              0.0,\n              0.0,\n              -1.0\n            ],\n            \"travel_mm\": 30.0,\n            \"samples_requested\": 17,\n            \"allowed_contact_pairs\": [\n              \"service-lid::enclosure-body\"\n            ],\n            \"blockages\": [],\n            \"method\": \"sampled_linear_translation_OCP_BREP\",\n            \"coverage\": \"sampled_not_continuous\",\n            \"prerequisite_step_ids\": []\n          }\n        ]\n      },\n      \"constraints\": [],\n      \"physical_print_validation\": \"NOT_EVALUATED\"\n    },\n    \"assembly_collision\": \"PASS\",\n    \"physical_print_validation\": \"NOT_EVALUATED\",\n    \"wall_thickness_scope\": \"Sampled B-rep inward-normal ray distances. Directional and not exhaustive; nominal wall declarations remain separate.\"\n  }\n}\n[\n  {\n    \"component\": \"body\",\n    \"step_reopened\": true,\n    \"step_matches_source\": true,\n    \"source_solid_count\": 1,\n    \"step_solid_count\": 1,\n    \"source_solid_volume_mm3\": 13248.0,\n    \"step_solid_volume_mm3\": 13248.0,\n    \"step_bytes\": 30222,\n    \"stl_watertight\": true,\n    \"stl_applicable\": true,\n    \"scope\": \"current roundtrip; not physical approval\",\n    \"stl_connected\": true,\n    \"stl_bytes\": 1484\n  },\n  {\n    \"component\": \"lid\",\n    \"step_reopened\": true,\n    \"step_matches_source\": true,\n    \"source_solid_count\": 1,\n    \"step_solid_count\": 1,\n    \"source_solid_volume_mm3\": 8758.720000000001,\n    \"step_solid_volume_mm3\": 8758.720000000001,\n    \"step_bytes\": 29729,\n    \"stl_watertight\": true,\n    \"stl_applicable\": true,\n    \"scope\": \"current roundtrip; not physical approval\",\n    \"stl_connected\": true,\n    \"stl_bytes\": 1484\n  }\n]\nPASS: manifesto build/outputs/manifest.json\n"
+      }
+    },
+    {
+      "name": "command architecture validate --geometry",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": "urce_freshness\": {\n              \"status\": \"PASS\",\n              \"reason\": \"project_input_and_validation_hashes_match\",\n              \"mismatched_hashes\": [],\n              \"changed_inputs\": [],\n              \"added_inputs\": [],\n              \"deleted_inputs\": [],\n              \"scope\": \"project-local Python and configuration plus declared source_inputs; excludes generated/cache/hidden paths and external runtime inputs\"\n            }\n          },\n          \"detail\": null,\n          \"recommendation\": \"Execute cad3d validate depois da \\u00faltima mudan\\u00e7a de geometria ou pose.\"\n        }\n      ],\n      \"recommendation\": null\n    },\n    {\n      \"id\": \"modeling-phase\",\n      \"title\": \"Fase 4: modelagem\",\n      \"status\": \"PASS\",\n      \"severity\": \"critical\",\n      \"kind\": \"automated\",\n      \"evidence\": null,\n      \"detail\": [\n        {\n          \"id\": \"component-model-links\",\n          \"title\": \"Fase 4: pe\\u00e7as e componentes modelados\",\n          \"status\": \"PASS\",\n          \"severity\": \"critical\",\n          \"kind\": \"automated\",\n          \"evidence\": {\n            \"missing_parts\": [],\n            \"shape_names\": [\n              \"body\",\n              \"lid\"\n            ]\n          },\n          \"detail\": null,\n          \"recommendation\": \"Gere ou corrija as pe\\u00e7as param\\u00e9tricas referenciadas no contrato.\"\n        }\n      ],\n      \"recommendation\": null\n    },\n    {\n      \"id\": \"manufacturing-phase\",\n      \"title\": \"Fase 6: fabrica\\u00e7\\u00e3o\",\n      \"status\": \"NOT_EVALUATED\",\n      \"severity\": \"major\",\n      \"kind\": \"automated\",\n      \"evidence\": null,\n      \"detail\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"recommendation\": null\n    }\n  ],\n  \"flow_paths\": [\n    {\n      \"id\": \"service-motion\",\n      \"status\": \"NOT_EVALUATED\",\n      \"method\": \"B-rep path sampling\",\n      \"reason\": \"centerline_radius_or_domain_missing\"\n    }\n  ],\n  \"limits\": [\n    \"contract completeness is not engineering proof\",\n    \"contact-free CAD pairs do not prove structural retention or joint strength\",\n    \"judgment, loads, seals, physical fit and functional behavior require review/test\"\n  ]\n}\n"
+      }
+    },
+    {
+      "name": "command review",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": "elat\\u00f3rio CAD atual presente e sem falha cr\\u00edtica\",\n          \"status\": \"PASS\",\n          \"severity\": \"critical\",\n          \"kind\": \"automated\",\n          \"evidence\": {\n            \"path\": \"build/outputs/validation.json\",\n            \"states\": {\n              \"geometric_validity\": \"PASS\",\n              \"assembly_validity\": \"PASS\",\n              \"manufacturing_assessment\": \"WARNING\",\n              \"printer_compatibility\": \"NOT_EVALUATED\",\n              \"slicing\": \"NOT_EVALUATED\",\n              \"physical_validation\": \"NOT_EVALUATED\"\n            },\n            \"source_freshness\": {\n              \"status\": \"PASS\",\n              \"reason\": \"project_input_and_validation_hashes_match\",\n              \"mismatched_hashes\": [],\n              \"changed_inputs\": [],\n              \"added_inputs\": [],\n              \"deleted_inputs\": [],\n              \"scope\": \"project-local Python and configuration plus declared source_inputs; excludes generated/cache/hidden paths and external runtime inputs\"\n            }\n          },\n          \"detail\": null,\n          \"recommendation\": \"Execute cad3d validate depois da \\u00faltima mudan\\u00e7a de geometria ou pose.\"\n        }\n      ],\n      \"severity\": \"critical\",\n      \"status\": \"WARNING\",\n      \"correction\": null,\n      \"verification_needed\": false\n    },\n    {\n      \"problem\": \"Fase 6: fabrica\\u00e7\\u00e3o\",\n      \"evidence\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"impact\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"severity\": \"major\",\n      \"status\": \"NOT_EVALUATED\",\n      \"correction\": null,\n      \"verification_needed\": false\n    }\n  ],\n  \"approval\": \"CONDITIONAL_REVIEW\",\n  \"outputs\": {\n    \"architecture_report\": \"build/outputs/architecture-review.json\"\n  }\n}\n"
+      }
+    },
+    {
+      "name": "command report --requirements",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": "ind\": \"automated\",\n            \"evidence\": {\n              \"path\": \"build/outputs/validation.json\",\n              \"states\": {\n                \"geometric_validity\": \"PASS\",\n                \"assembly_validity\": \"PASS\",\n                \"manufacturing_assessment\": \"WARNING\",\n                \"printer_compatibility\": \"NOT_EVALUATED\",\n                \"slicing\": \"NOT_EVALUATED\",\n                \"physical_validation\": \"NOT_EVALUATED\"\n              },\n              \"source_freshness\": {\n                \"status\": \"PASS\",\n                \"reason\": \"project_input_and_validation_hashes_match\",\n                \"mismatched_hashes\": [],\n                \"changed_inputs\": [],\n                \"added_inputs\": [],\n                \"deleted_inputs\": [],\n                \"scope\": \"project-local Python and configuration plus declared source_inputs; excludes generated/cache/hidden paths and external runtime inputs\"\n              }\n            },\n            \"detail\": null,\n            \"recommendation\": \"Execute cad3d validate depois da \\u00faltima mudan\\u00e7a de geometria ou pose.\"\n          }\n        ],\n        \"severity\": \"critical\",\n        \"status\": \"WARNING\",\n        \"correction\": null,\n        \"verification_needed\": false\n      },\n      {\n        \"problem\": \"Fase 6: fabrica\\u00e7\\u00e3o\",\n        \"evidence\": [\n          {\n            \"id\": \"physical-validation\",\n            \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n            \"status\": \"NOT_EVALUATED\",\n            \"severity\": \"major\",\n            \"kind\": \"engineering_judgment\",\n            \"evidence\": null,\n            \"detail\": null,\n            \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n          }\n        ],\n        \"impact\": [\n          {\n            \"id\": \"physical-validation\",\n            \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n            \"status\": \"NOT_EVALUATED\",\n            \"severity\": \"major\",\n            \"kind\": \"engineering_judgment\",\n            \"evidence\": null,\n            \"detail\": null,\n            \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n          }\n        ],\n        \"severity\": \"major\",\n        \"status\": \"NOT_EVALUATED\",\n        \"correction\": null,\n        \"verification_needed\": false\n      }\n    ],\n    \"approval\": \"CONDITIONAL_REVIEW\",\n    \"outputs\": {\n      \"architecture_report\": \"build/outputs/architecture-review.json\"\n    }\n  }\n}\n"
+      }
+    },
+    {
+      "name": "A assembly/fit/removal positive",
+      "status": "PASS",
+      "evidence": {
+        "fit": [
+          {
+            "id": "cover-fit",
+            "type": "removable_cover",
+            "status": "PASS",
+            "male_nominal_mm": 55.6,
+            "female_nominal_mm": 56.0,
+            "nominal_clearance_mm": 0.3999999999999986,
+            "allowed_range_mm": [
+              0.3,
+              0.6
+            ],
+            "basis": "declared_parametric_dimensions; B-rep interference remains independently checked"
+          }
+        ],
+        "sequence": "PASS"
+      }
+    },
+    {
+      "name": "A evidence-based design review has findings",
+      "status": "PASS",
+      "evidence": {
+        "status": "WARNING",
+        "finding_count": 4
+      }
+    },
+    {
+      "name": "command validate",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 3,
+        "tail": "ue,\n        \"component_id\": \"service-lid\",\n        \"position_mm\": [\n          0,\n          0,\n          0\n        ],\n        \"rotation_deg\": [\n          0,\n          0,\n          0\n        ]\n      }\n    ],\n    \"pairs\": [\n      {\n        \"pair\": \"enclosure-body::service-lid\",\n        \"method\": \"atomic_solids_OCP_BREP\",\n        \"clearance_scope\": \"global minimum across world-located atomic solid pairs; sampled paths remain separate\",\n        \"min_clearance_required_mm\": 0.0,\n        \"intentional_contact\": true,\n        \"status\": \"PASS\",\n        \"solid_pair_count\": 1,\n        \"intersection_volume_mm3\": 0,\n        \"classification\": \"SURFACE_CONTACT\",\n        \"reason\": \"declared_contact\",\n        \"broad_phase\": \"OVERLAP\",\n        \"findings\": [],\n        \"surface_distance_mm\": 0.0,\n        \"interface\": {\n          \"id\": \"cover-fit\",\n          \"type\": \"removable_cover\",\n          \"required_clearance_mm\": 0.0\n        }\n      }\n    ],\n    \"access_checks\": [],\n    \"structural_checks\": [],\n    \"measured_fit_calibration\": null,\n    \"fastener_stacks\": [],\n    \"tolerance_stacks\": [],\n    \"fit_checks\": [\n      {\n        \"id\": \"cover-fit\",\n        \"type\": \"removable_cover\",\n        \"status\": \"FAIL\",\n        \"male_nominal_mm\": 55.9,\n        \"female_nominal_mm\": 56.0,\n        \"nominal_clearance_mm\": 0.10000000000000142,\n        \"allowed_range_mm\": [\n          0.3,\n          0.6\n        ],\n        \"basis\": \"declared_parametric_dimensions; B-rep interference remains independently checked\"\n      }\n    ],\n    \"functional_face_checks\": [],\n    \"wall_checks\": [],\n    \"assembly_sequence\": {\n      \"status\": \"PASS\",\n      \"steps\": [\n        {\n          \"id\": \"lift-cover\",\n          \"status\": \"PASS\",\n          \"moving_component\": \"service-lid\",\n          \"direction_unit\": [\n            0.0,\n            0.0,\n            -1.0\n          ],\n          \"travel_mm\": 30.0,\n          \"samples_requested\": 17,\n          \"allowed_contact_pairs\": [\n            \"service-lid::enclosure-body\"\n          ],\n          \"blockages\": [],\n          \"method\": \"sampled_linear_translation_OCP_BREP\",\n          \"coverage\": \"sampled_not_continuous\",\n          \"prerequisite_step_ids\": []\n        }\n      ]\n    },\n    \"constraints\": [],\n    \"physical_print_validation\": \"NOT_EVALUATED\"\n  },\n  \"assembly_collision\": \"FAIL\",\n  \"physical_print_validation\": \"NOT_EVALUATED\",\n  \"wall_thickness_scope\": \"Sampled B-rep inward-normal ray distances. Directional and not exhaustive; nominal wall declarations remain separate.\"\n}\n\n"
+      }
+    },
+    {
+      "name": "A insufficient clearance detected",
+      "status": "PASS",
+      "evidence": {
+        "id": "cover-fit",
+        "type": "removable_cover",
+        "status": "FAIL",
+        "male_nominal_mm": 55.9,
+        "female_nominal_mm": 56.0,
+        "nominal_clearance_mm": 0.10000000000000142,
+        "allowed_range_mm": [
+          0.3,
+          0.6
+        ],
+        "basis": "declared_parametric_dimensions; B-rep interference remains independently checked"
+      }
+    },
+    {
+      "name": "command build",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": "  \"measured_fit_calibration\": null,\n      \"fastener_stacks\": [],\n      \"tolerance_stacks\": [],\n      \"fit_checks\": [\n        {\n          \"id\": \"cover-fit\",\n          \"type\": \"removable_cover\",\n          \"status\": \"PASS\",\n          \"male_nominal_mm\": 55.6,\n          \"female_nominal_mm\": 56.0,\n          \"nominal_clearance_mm\": 0.3999999999999986,\n          \"allowed_range_mm\": [\n            0.3,\n            0.6\n          ],\n          \"basis\": \"declared_parametric_dimensions; B-rep interference remains independently checked\"\n        }\n      ],\n      \"functional_face_checks\": [],\n      \"wall_checks\": [],\n      \"assembly_sequence\": {\n        \"status\": \"PASS\",\n        \"steps\": [\n          {\n            \"id\": \"lift-cover\",\n            \"status\": \"PASS\",\n            \"moving_component\": \"service-lid\",\n            \"direction_unit\": [\n              0.0,\n              0.0,\n              -1.0\n            ],\n            \"travel_mm\": 30.0,\n            \"samples_requested\": 17,\n            \"allowed_contact_pairs\": [\n              \"service-lid::enclosure-body\"\n            ],\n            \"blockages\": [],\n            \"method\": \"sampled_linear_translation_OCP_BREP\",\n            \"coverage\": \"sampled_not_continuous\",\n            \"prerequisite_step_ids\": []\n          }\n        ]\n      },\n      \"constraints\": [],\n      \"physical_print_validation\": \"NOT_EVALUATED\"\n    },\n    \"assembly_collision\": \"PASS\",\n    \"physical_print_validation\": \"NOT_EVALUATED\",\n    \"wall_thickness_scope\": \"Sampled B-rep inward-normal ray distances. Directional and not exhaustive; nominal wall declarations remain separate.\"\n  }\n}\n[\n  {\n    \"component\": \"body\",\n    \"step_reopened\": true,\n    \"step_matches_source\": true,\n    \"source_solid_count\": 1,\n    \"step_solid_count\": 1,\n    \"source_solid_volume_mm3\": 13248.0,\n    \"step_solid_volume_mm3\": 13248.0,\n    \"step_bytes\": 30222,\n    \"stl_watertight\": true,\n    \"stl_applicable\": true,\n    \"scope\": \"current roundtrip; not physical approval\",\n    \"stl_connected\": true,\n    \"stl_bytes\": 1484\n  },\n  {\n    \"component\": \"lid\",\n    \"step_reopened\": true,\n    \"step_matches_source\": true,\n    \"source_solid_count\": 1,\n    \"step_solid_count\": 1,\n    \"source_solid_volume_mm3\": 8758.720000000001,\n    \"step_solid_volume_mm3\": 8758.720000000001,\n    \"step_bytes\": 29729,\n    \"stl_watertight\": true,\n    \"stl_applicable\": true,\n    \"scope\": \"current roundtrip; not physical approval\",\n    \"stl_connected\": true,\n    \"stl_bytes\": 1484\n  }\n]\nPASS: manifesto build/outputs/manifest.json\n"
+      }
+    },
+    {
+      "name": "command review",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": "elat\\u00f3rio CAD atual presente e sem falha cr\\u00edtica\",\n          \"status\": \"PASS\",\n          \"severity\": \"critical\",\n          \"kind\": \"automated\",\n          \"evidence\": {\n            \"path\": \"build/outputs/validation.json\",\n            \"states\": {\n              \"geometric_validity\": \"PASS\",\n              \"assembly_validity\": \"PASS\",\n              \"manufacturing_assessment\": \"WARNING\",\n              \"printer_compatibility\": \"NOT_EVALUATED\",\n              \"slicing\": \"NOT_EVALUATED\",\n              \"physical_validation\": \"NOT_EVALUATED\"\n            },\n            \"source_freshness\": {\n              \"status\": \"PASS\",\n              \"reason\": \"project_input_and_validation_hashes_match\",\n              \"mismatched_hashes\": [],\n              \"changed_inputs\": [],\n              \"added_inputs\": [],\n              \"deleted_inputs\": [],\n              \"scope\": \"project-local Python and configuration plus declared source_inputs; excludes generated/cache/hidden paths and external runtime inputs\"\n            }\n          },\n          \"detail\": null,\n          \"recommendation\": \"Execute cad3d validate depois da \\u00faltima mudan\\u00e7a de geometria ou pose.\"\n        }\n      ],\n      \"severity\": \"critical\",\n      \"status\": \"WARNING\",\n      \"correction\": null,\n      \"verification_needed\": false\n    },\n    {\n      \"problem\": \"Fase 6: fabrica\\u00e7\\u00e3o\",\n      \"evidence\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"impact\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"severity\": \"major\",\n      \"status\": \"NOT_EVALUATED\",\n      \"correction\": null,\n      \"verification_needed\": false\n    }\n  ],\n  \"approval\": \"CONDITIONAL_REVIEW\",\n  \"outputs\": {\n    \"architecture_report\": \"build/outputs/architecture-review.json\"\n  }\n}\n"
+      }
+    },
+    {
+      "name": "A corrected fit revalidated",
+      "status": "PASS",
+      "evidence": null
+    },
+    {
+      "name": "A required CAD views have valid PNG metadata (legibility not evaluated)",
+      "status": "PASS",
+      "evidence": {
+        "iso": {
+          "signature": true,
+          "width": 1600,
+          "height": 1200,
+          "bytes": 83816,
+          "sha256": "ba99d3afecc0c46f7e39f54d4838540c62b9e9614793cc930682ff212ad5c0d2"
+        },
+        "top": {
+          "signature": true,
+          "width": 1600,
+          "height": 1200,
+          "bytes": 51470,
+          "sha256": "79cc570048365389e30528be6b1035dc9b32d39031fa06c6d8ce59ff8aaf0f98"
+        },
+        "front": {
+          "signature": true,
+          "width": 1600,
+          "height": 1200,
+          "bytes": 43469,
+          "sha256": "74ed1cf2ffd9084d6f7ca2070a1f4f3e36c370b6474964a3fea3b4fb7b73883b"
+        },
+        "side": {
+          "signature": true,
+          "width": 1600,
+          "height": 1200,
+          "bytes": 43892,
+          "sha256": "ee7accbf878ffdb0d1a219f2ffeba40b88510751e18ade0f47b03bf324264960"
+        },
+        "section": {
+          "signature": true,
+          "width": 1600,
+          "height": 1200,
+          "bytes": 48754,
+          "sha256": "df20f8f8d18d9f633bd09d07986082bf9cbb27925bc079d9a601b585292c8eaa"
+        },
+        "exploded": {
+          "signature": true,
+          "width": 1600,
+          "height": 1200,
+          "bytes": 103238,
+          "sha256": "431ccbfbe59c91b82d39536481cbf3245f9800b1087e66d666cd02fe1071c06a"
+        },
+        "hidden": {
+          "signature": true,
+          "width": 1600,
+          "height": 1200,
+          "bytes": 83631,
+          "sha256": "b23baadb6b2d67edeefd24bcafa8a226a43da152dedbd8f4861135bf458921c5"
+        },
+        "interfaces": {
+          "signature": true,
+          "width": 1600,
+          "height": 1200,
+          "bytes": 94578,
+          "sha256": "f7ef41d9257ab43ad8df0a0aac696012bfd23aa4595335f8bf66bc20c8ffa7b7"
+        }
+      }
+    },
+    {
+      "name": "A view images differ",
+      "status": "PASS",
+      "evidence": {
+        "iso": "ba99d3afecc0",
+        "top": "79cc57004836",
+        "front": "74ed1cf2ffd9",
+        "side": "ee7accbf878f",
+        "section": "df20f8f8d18d",
+        "exploded": "431ccbfbe59c",
+        "hidden": "b23baadb6b2d",
+        "interfaces": "f7ef41d9257a"
+      }
+    },
+    {
+      "name": "A section view uses real tessellated plane intersections",
+      "status": "PASS",
+      "evidence": {
+        "axis": "x",
+        "coordinate_mm": 0.0,
+        "kept_side_toward_camera": -1,
+        "method": "tessellated plane-intersection outlines; no synthetic caps"
+      }
+    },
+    {
+      "name": "command build",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": "     \"structural_checks\": [],\n      \"measured_fit_calibration\": null,\n      \"fastener_stacks\": [],\n      \"tolerance_stacks\": [],\n      \"fit_checks\": [\n        {\n          \"id\": \"captured-slide\",\n          \"type\": \"rail_guide\",\n          \"status\": \"PASS\",\n          \"male_nominal_mm\": 3.6,\n          \"female_nominal_mm\": 4.0,\n          \"nominal_clearance_mm\": 0.3999999999999999,\n          \"allowed_range_mm\": [\n            0.25,\n            0.5\n          ],\n          \"basis\": \"declared_parametric_dimensions; B-rep interference remains independently checked\"\n        }\n      ],\n      \"functional_face_checks\": [],\n      \"wall_checks\": [],\n      \"assembly_sequence\": {\n        \"status\": \"PASS\",\n        \"steps\": [\n          {\n            \"id\": \"remove-upright\",\n            \"status\": \"PASS\",\n            \"moving_component\": \"upright\",\n            \"direction_unit\": [\n              1.0,\n              0.0,\n              0.0\n            ],\n            \"travel_mm\": 35.0,\n            \"samples_requested\": 25,\n            \"allowed_contact_pairs\": [\n              \"upright::base\"\n            ],\n            \"blockages\": [],\n            \"method\": \"sampled_linear_translation_OCP_BREP\",\n            \"coverage\": \"sampled_not_continuous\",\n            \"prerequisite_step_ids\": []\n          }\n        ]\n      },\n      \"constraints\": [],\n      \"physical_print_validation\": \"NOT_EVALUATED\"\n    },\n    \"assembly_collision\": \"PASS\",\n    \"physical_print_validation\": \"NOT_EVALUATED\",\n    \"wall_thickness_scope\": \"Sampled B-rep inward-normal ray distances. Directional and not exhaustive; nominal wall declarations remain separate.\"\n  }\n}\n[\n  {\n    \"component\": \"base\",\n    \"step_reopened\": true,\n    \"step_matches_source\": true,\n    \"source_solid_count\": 1,\n    \"step_solid_count\": 1,\n    \"source_solid_volume_mm3\": 20640.0,\n    \"step_solid_volume_mm3\": 20640.0,\n    \"step_bytes\": 56568,\n    \"stl_watertight\": true,\n    \"stl_applicable\": true,\n    \"scope\": \"current roundtrip; not physical approval\",\n    \"stl_connected\": true,\n    \"stl_bytes\": 3084\n  },\n  {\n    \"component\": \"upright\",\n    \"step_reopened\": true,\n    \"step_matches_source\": true,\n    \"source_solid_count\": 1,\n    \"step_solid_count\": 1,\n    \"source_solid_volume_mm3\": 2542.4,\n    \"step_solid_volume_mm3\": 2542.4,\n    \"step_bytes\": 42745,\n    \"stl_watertight\": true,\n    \"stl_applicable\": true,\n    \"scope\": \"current roundtrip; not physical approval\",\n    \"stl_connected\": true,\n    \"stl_bytes\": 2284\n  }\n]\nPASS: manifesto build/outputs/manifest.json\n"
+      }
+    },
+    {
+      "name": "command architecture validate --geometry",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": "     \"changed_inputs\": [],\n              \"added_inputs\": [],\n              \"deleted_inputs\": [],\n              \"scope\": \"project-local Python and configuration plus declared source_inputs; excludes generated/cache/hidden paths and external runtime inputs\"\n            }\n          },\n          \"detail\": null,\n          \"recommendation\": \"Execute cad3d validate depois da \\u00faltima mudan\\u00e7a de geometria ou pose.\"\n        }\n      ],\n      \"recommendation\": null\n    },\n    {\n      \"id\": \"modeling-phase\",\n      \"title\": \"Fase 4: modelagem\",\n      \"status\": \"PASS\",\n      \"severity\": \"critical\",\n      \"kind\": \"automated\",\n      \"evidence\": null,\n      \"detail\": [\n        {\n          \"id\": \"component-model-links\",\n          \"title\": \"Fase 4: pe\\u00e7as e componentes modelados\",\n          \"status\": \"PASS\",\n          \"severity\": \"critical\",\n          \"kind\": \"automated\",\n          \"evidence\": {\n            \"missing_parts\": [],\n            \"shape_names\": [\n              \"base\",\n              \"upright\"\n            ]\n          },\n          \"detail\": null,\n          \"recommendation\": \"Gere ou corrija as pe\\u00e7as param\\u00e9tricas referenciadas no contrato.\"\n        }\n      ],\n      \"recommendation\": null\n    },\n    {\n      \"id\": \"manufacturing-phase\",\n      \"title\": \"Fase 6: fabrica\\u00e7\\u00e3o\",\n      \"status\": \"NOT_EVALUATED\",\n      \"severity\": \"major\",\n      \"kind\": \"automated\",\n      \"evidence\": null,\n      \"detail\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"recommendation\": null\n    }\n  ],\n  \"flow_paths\": [\n    {\n      \"id\": \"load-path\",\n      \"status\": \"NOT_EVALUATED\",\n      \"method\": \"B-rep path sampling\",\n      \"reason\": \"centerline_radius_or_domain_missing\"\n    },\n    {\n      \"id\": \"service-motion\",\n      \"status\": \"NOT_EVALUATED\",\n      \"method\": \"B-rep path sampling\",\n      \"reason\": \"centerline_radius_or_domain_missing\"\n    }\n  ],\n  \"limits\": [\n    \"contract completeness is not engineering proof\",\n    \"contact-free CAD pairs do not prove structural retention or joint strength\",\n    \"judgment, loads, seals, physical fit and functional behavior require review/test\"\n  ]\n}\n"
+      }
+    },
+    {
+      "name": "command review",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": "elat\\u00f3rio CAD atual presente e sem falha cr\\u00edtica\",\n          \"status\": \"PASS\",\n          \"severity\": \"critical\",\n          \"kind\": \"automated\",\n          \"evidence\": {\n            \"path\": \"build/outputs/validation.json\",\n            \"states\": {\n              \"geometric_validity\": \"PASS\",\n              \"assembly_validity\": \"PASS\",\n              \"manufacturing_assessment\": \"WARNING\",\n              \"printer_compatibility\": \"NOT_EVALUATED\",\n              \"slicing\": \"NOT_EVALUATED\",\n              \"physical_validation\": \"NOT_EVALUATED\"\n            },\n            \"source_freshness\": {\n              \"status\": \"PASS\",\n              \"reason\": \"project_input_and_validation_hashes_match\",\n              \"mismatched_hashes\": [],\n              \"changed_inputs\": [],\n              \"added_inputs\": [],\n              \"deleted_inputs\": [],\n              \"scope\": \"project-local Python and configuration plus declared source_inputs; excludes generated/cache/hidden paths and external runtime inputs\"\n            }\n          },\n          \"detail\": null,\n          \"recommendation\": \"Execute cad3d validate depois da \\u00faltima mudan\\u00e7a de geometria ou pose.\"\n        }\n      ],\n      \"severity\": \"critical\",\n      \"status\": \"WARNING\",\n      \"correction\": null,\n      \"verification_needed\": false\n    },\n    {\n      \"problem\": \"Fase 6: fabrica\\u00e7\\u00e3o\",\n      \"evidence\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"impact\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"severity\": \"major\",\n      \"status\": \"NOT_EVALUATED\",\n      \"correction\": null,\n      \"verification_needed\": false\n    }\n  ],\n  \"approval\": \"CONDITIONAL_REVIEW\",\n  \"outputs\": {\n    \"architecture_report\": \"build/outputs/architecture-review.json\"\n  }\n}\n"
+      }
+    },
+    {
+      "name": "B rail interface and insertion path pass",
+      "status": "PASS",
+      "evidence": {
+        "fit": [
+          {
+            "id": "captured-slide",
+            "type": "rail_guide",
+            "status": "PASS",
+            "male_nominal_mm": 3.6,
+            "female_nominal_mm": 4.0,
+            "nominal_clearance_mm": 0.3999999999999999,
+            "allowed_range_mm": [
+              0.25,
+              0.5
+            ],
+            "basis": "declared_parametric_dimensions; B-rep interference remains independently checked"
+          }
+        ],
+        "path": {
+          "status": "PASS",
+          "steps": [
+            {
+              "id": "remove-upright",
+              "status": "PASS",
+              "moving_component": "upright",
+              "direction_unit": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "travel_mm": 35.0,
+              "samples_requested": 25,
+              "allowed_contact_pairs": [
+                "upright::base"
+              ],
+              "blockages": [],
+              "method": "sampled_linear_translation_OCP_BREP",
+              "coverage": "sampled_not_continuous",
+              "prerequisite_step_ids": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "B deliberate retention defect mutation applied",
+      "status": "PASS",
+      "evidence": null
+    },
+    {
+      "name": "command review",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 3,
+        "tail": "dation\": \"Gere ou corrija as pe\\u00e7as param\\u00e9tricas referenciadas no contrato.\"\n        }\n      ],\n      \"impact\": [\n        {\n          \"id\": \"component-model-links\",\n          \"title\": \"Fase 4: pe\\u00e7as e componentes modelados\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"critical\",\n          \"kind\": \"automated\",\n          \"evidence\": {\n            \"missing_parts\": [],\n            \"shape_names\": null\n          },\n          \"detail\": null,\n          \"recommendation\": \"Gere ou corrija as pe\\u00e7as param\\u00e9tricas referenciadas no contrato.\"\n        }\n      ],\n      \"severity\": \"critical\",\n      \"status\": \"NOT_EVALUATED\",\n      \"correction\": null,\n      \"verification_needed\": false\n    },\n    {\n      \"problem\": \"Fase 6: fabrica\\u00e7\\u00e3o\",\n      \"evidence\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"impact\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"severity\": \"major\",\n      \"status\": \"NOT_EVALUATED\",\n      \"correction\": null,\n      \"verification_needed\": false\n    }\n  ],\n  \"approval\": \"BLOCKED\",\n  \"outputs\": {\n    \"architecture_report\": \"build/outputs/architecture-review.json\"\n  },\n  \"geometry_gate\": {\n    \"status\": \"FAIL\",\n    \"reason\": \"product_architecture_gate_incomplete\",\n    \"required_phases\": [\n      \"requirements\",\n      \"functional_architecture\",\n      \"mechanical_architecture\"\n    ],\n    \"phase_states\": {\n      \"requirements\": \"PASS\",\n      \"functional_architecture\": \"WARNING\",\n      \"mechanical_architecture\": \"FAIL\",\n      \"modeling\": \"NOT_EVALUATED\",\n      \"system_verification\": \"FAIL\",\n      \"manufacturing\": \"NOT_EVALUATED\"\n    },\n    \"next_step\": \"Complete .cad3d/engineering.yaml and .cad3d/assembly.yaml, then run cad3d architecture validate.\"\n  }\n}\n\n"
+      }
+    },
+    {
+      "name": "B position without retention is blocked",
+      "status": "PASS",
+      "evidence": {
+        "status": "FAIL",
+        "retention_findings": [
+          {
+            "id": "retention-base",
+            "title": "Reten\u00e7\u00e3o de base",
+            "status": "WARNING",
+            "severity": "major",
+            "kind": "automated",
+            "evidence": {
+              "component": {
+                "assembly_component": {
+                  "id": "base",
+                  "part": "base",
+                  "position_mm": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "rotation_deg": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "part": "base",
+                "function": "Provide mounting datum and female captured rail.",
+                "retention": {
+                  "method": "fixed_to_datum",
+                  "datum": "underside Z0",
+                  "fastener_interface": "external mounting surface"
+                }
+              },
+              "reason": "external_fixing_interface_declared_but_load_not_analyzed"
+            },
+            "detail": null,
+            "recommendation": "Declare o m\u00e9todo e relacione interfaces CAD posicionadas; valide for\u00e7a/retens\u00e3o com m\u00e9todo apropriado."
+          },
+          {
+            "id": "retention-upright",
+            "title": "Reten\u00e7\u00e3o de upright",
+            "status": "FAIL",
+            "severity": "critical",
+            "kind": "automated",
+            "evidence": {
+              "component": {
+                "assembly_component": {
+                  "id": "upright",
+                  "part": "upright",
+                  "position_mm": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "rotation_deg": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "part": "upright",
+                "function": "Carry generic payload and male T tongue.",
+                "retention": {}
+              },
+              "reason": "retention_method_missing"
+            },
+            "detail": null,
+            "recommendation": "Declare o m\u00e9todo e relacione interfaces CAD posicionadas; valide for\u00e7a/retens\u00e3o com m\u00e9todo apropriado."
+          }
+        ]
+      }
+    },
+    {
+      "name": "command review",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": "elat\\u00f3rio CAD atual presente e sem falha cr\\u00edtica\",\n          \"status\": \"PASS\",\n          \"severity\": \"critical\",\n          \"kind\": \"automated\",\n          \"evidence\": {\n            \"path\": \"build/outputs/validation.json\",\n            \"states\": {\n              \"geometric_validity\": \"PASS\",\n              \"assembly_validity\": \"PASS\",\n              \"manufacturing_assessment\": \"WARNING\",\n              \"printer_compatibility\": \"NOT_EVALUATED\",\n              \"slicing\": \"NOT_EVALUATED\",\n              \"physical_validation\": \"NOT_EVALUATED\"\n            },\n            \"source_freshness\": {\n              \"status\": \"PASS\",\n              \"reason\": \"project_input_and_validation_hashes_match\",\n              \"mismatched_hashes\": [],\n              \"changed_inputs\": [],\n              \"added_inputs\": [],\n              \"deleted_inputs\": [],\n              \"scope\": \"project-local Python and configuration plus declared source_inputs; excludes generated/cache/hidden paths and external runtime inputs\"\n            }\n          },\n          \"detail\": null,\n          \"recommendation\": \"Execute cad3d validate depois da \\u00faltima mudan\\u00e7a de geometria ou pose.\"\n        }\n      ],\n      \"severity\": \"critical\",\n      \"status\": \"WARNING\",\n      \"correction\": null,\n      \"verification_needed\": false\n    },\n    {\n      \"problem\": \"Fase 6: fabrica\\u00e7\\u00e3o\",\n      \"evidence\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"impact\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"severity\": \"major\",\n      \"status\": \"NOT_EVALUATED\",\n      \"correction\": null,\n      \"verification_needed\": false\n    }\n  ],\n  \"approval\": \"CONDITIONAL_REVIEW\",\n  \"outputs\": {\n    \"architecture_report\": \"build/outputs/architecture-review.json\"\n  }\n}\n"
+      }
+    },
+    {
+      "name": "B mechanical retention restored",
+      "status": "PASS",
+      "evidence": null
+    },
+    {
+      "name": "command build",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": " [\n              \"normal-direction samples only\",\n              \"not exhaustive over face area or all directions\",\n              \"thin features between sample points may be missed\"\n            ],\n            \"measured_samples\": 162,\n            \"minimum_sampled_mm\": 3.0,\n            \"maximum_sampled_mm\": 20.0\n          },\n          \"nominal_wall_parameter\": \"NOT_EVALUATED unless explicitly declared\",\n          \"stl_watertight\": true,\n          \"connected_mesh\": {\n            \"status\": \"PASS\",\n            \"connected_components\": 1,\n            \"reason\": \"single_mesh_component\"\n          },\n          \"brep_solid_count\": 1,\n          \"support_risk\": {\n            \"status\": \"WARNING\",\n            \"method\": \"STL_face_normal_heuristic\",\n            \"potential_downward_area_mm2\": 72.0,\n            \"interpretation\": \"heuristic_only; orientation, bridges and slicer rules are not fully modeled\"\n          },\n          \"manufacturing_applicable\": true,\n          \"component_id\": \"chamber-wall-block\",\n          \"position_mm\": [\n            0,\n            0,\n            0\n          ],\n          \"rotation_deg\": [\n            0,\n            0,\n            0\n          ]\n        }\n      ],\n      \"pairs\": [],\n      \"access_checks\": [],\n      \"structural_checks\": [],\n      \"measured_fit_calibration\": null,\n      \"fastener_stacks\": [],\n      \"tolerance_stacks\": [],\n      \"fit_checks\": [],\n      \"functional_face_checks\": [],\n      \"wall_checks\": [],\n      \"assembly_sequence\": {\n        \"status\": \"NOT_EVALUATED\",\n        \"steps\": []\n      },\n      \"constraints\": [\n        {\n          \"type\": \"datum\",\n          \"note\": \"XYZ in millimetres\",\n          \"inlet X10/Y15/Z5\": null,\n          \"outlet X80/Y15/Z23\": null\n        }\n      ],\n      \"physical_print_validation\": \"NOT_EVALUATED\"\n    },\n    \"assembly_collision\": \"PASS\",\n    \"physical_print_validation\": \"NOT_EVALUATED\",\n    \"wall_thickness_scope\": \"Sampled B-rep inward-normal ray distances. Directional and not exhaustive; nominal wall declarations remain separate.\"\n  }\n}\n[\n  {\n    \"component\": \"flow_block\",\n    \"step_reopened\": true,\n    \"step_matches_source\": true,\n    \"source_solid_count\": 1,\n    \"step_solid_count\": 1,\n    \"source_solid_volume_mm3\": 29160.0,\n    \"step_solid_volume_mm3\": 29160.0,\n    \"step_bytes\": 56940,\n    \"stl_watertight\": true,\n    \"stl_applicable\": true,\n    \"scope\": \"current roundtrip; not physical approval\",\n    \"stl_connected\": true,\n    \"stl_bytes\": 3284\n  }\n]\nPASS: manifesto build/outputs/manifest.json\n"
+      }
+    },
+    {
+      "name": "command architecture validate --geometry",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": "cal Python and configuration plus declared source_inputs; excludes generated/cache/hidden paths and external runtime inputs\"\n            }\n          },\n          \"detail\": null,\n          \"recommendation\": \"Execute cad3d validate depois da \\u00faltima mudan\\u00e7a de geometria ou pose.\"\n        }\n      ],\n      \"recommendation\": null\n    },\n    {\n      \"id\": \"modeling-phase\",\n      \"title\": \"Fase 4: modelagem\",\n      \"status\": \"PASS\",\n      \"severity\": \"critical\",\n      \"kind\": \"automated\",\n      \"evidence\": null,\n      \"detail\": [\n        {\n          \"id\": \"component-model-links\",\n          \"title\": \"Fase 4: pe\\u00e7as e componentes modelados\",\n          \"status\": \"PASS\",\n          \"severity\": \"critical\",\n          \"kind\": \"automated\",\n          \"evidence\": {\n            \"missing_parts\": [],\n            \"shape_names\": [\n              \"flow_block\"\n            ]\n          },\n          \"detail\": null,\n          \"recommendation\": \"Gere ou corrija as pe\\u00e7as param\\u00e9tricas referenciadas no contrato.\"\n        }\n      ],\n      \"recommendation\": null\n    },\n    {\n      \"id\": \"manufacturing-phase\",\n      \"title\": \"Fase 6: fabrica\\u00e7\\u00e3o\",\n      \"status\": \"NOT_EVALUATED\",\n      \"severity\": \"major\",\n      \"kind\": \"automated\",\n      \"evidence\": null,\n      \"detail\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"recommendation\": null\n    }\n  ],\n  \"flow_paths\": [\n    {\n      \"id\": \"inlet-to-outlet\",\n      \"status\": \"PASS\",\n      \"method\": \"sampled centerline plus 8-point cross-section against actual OCP B-rep solids\",\n      \"sample_step_mm\": 0.75,\n      \"clearance_radius_mm\": 1.5,\n      \"sampled_points\": 1098,\n      \"blocking_sample\": null,\n      \"limitations\": [\n        \"approximate swept clearance; between-sample defects may remain\",\n        \"no CFD, pressure-drop, flow-rate, turbulence, seal, pump, or priming analysis\"\n      ]\n    }\n  ],\n  \"limits\": [\n    \"contract completeness is not engineering proof\",\n    \"contact-free CAD pairs do not prove structural retention or joint strength\",\n    \"judgment, loads, seals, physical fit and functional behavior require review/test\"\n  ]\n}\n"
+      }
+    },
+    {
+      "name": "command review",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": "elat\\u00f3rio CAD atual presente e sem falha cr\\u00edtica\",\n          \"status\": \"PASS\",\n          \"severity\": \"critical\",\n          \"kind\": \"automated\",\n          \"evidence\": {\n            \"path\": \"build/outputs/validation.json\",\n            \"states\": {\n              \"geometric_validity\": \"PASS\",\n              \"assembly_validity\": \"PASS\",\n              \"manufacturing_assessment\": \"WARNING\",\n              \"printer_compatibility\": \"NOT_EVALUATED\",\n              \"slicing\": \"NOT_EVALUATED\",\n              \"physical_validation\": \"NOT_EVALUATED\"\n            },\n            \"source_freshness\": {\n              \"status\": \"PASS\",\n              \"reason\": \"project_input_and_validation_hashes_match\",\n              \"mismatched_hashes\": [],\n              \"changed_inputs\": [],\n              \"added_inputs\": [],\n              \"deleted_inputs\": [],\n              \"scope\": \"project-local Python and configuration plus declared source_inputs; excludes generated/cache/hidden paths and external runtime inputs\"\n            }\n          },\n          \"detail\": null,\n          \"recommendation\": \"Execute cad3d validate depois da \\u00faltima mudan\\u00e7a de geometria ou pose.\"\n        }\n      ],\n      \"severity\": \"critical\",\n      \"status\": \"WARNING\",\n      \"correction\": null,\n      \"verification_needed\": false\n    },\n    {\n      \"problem\": \"Fase 6: fabrica\\u00e7\\u00e3o\",\n      \"evidence\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"impact\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"severity\": \"major\",\n      \"status\": \"NOT_EVALUATED\",\n      \"correction\": null,\n      \"verification_needed\": false\n    }\n  ],\n  \"approval\": \"CONDITIONAL_REVIEW\",\n  \"outputs\": {\n    \"architecture_report\": \"build/outputs/architecture-review.json\"\n  }\n}\n"
+      }
+    },
+    {
+      "name": "C sampled passage through three chamber B-rep passes",
+      "status": "PASS",
+      "evidence": {
+        "id": "inlet-to-outlet",
+        "status": "PASS",
+        "method": "sampled centerline plus 8-point cross-section against actual OCP B-rep solids",
+        "sample_step_mm": 0.75,
+        "clearance_radius_mm": 1.5,
+        "sampled_points": 1098,
+        "blocking_sample": null,
+        "limitations": [
+          "approximate swept clearance; between-sample defects may remain",
+          "no CFD, pressure-drop, flow-rate, turbulence, seal, pump, or priming analysis"
+        ]
+      }
+    },
+    {
+      "name": "C deliberate blocked path mutation applied",
+      "status": "PASS",
+      "evidence": null
+    },
+    {
+      "name": "command architecture validate --geometry",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 3,
+        "tail": "detail\": null,\n          \"recommendation\": \"Execute cad3d validate depois da \\u00faltima mudan\\u00e7a de geometria ou pose.\"\n        }\n      ],\n      \"recommendation\": null\n    },\n    {\n      \"id\": \"modeling-phase\",\n      \"title\": \"Fase 4: modelagem\",\n      \"status\": \"PASS\",\n      \"severity\": \"critical\",\n      \"kind\": \"automated\",\n      \"evidence\": null,\n      \"detail\": [\n        {\n          \"id\": \"component-model-links\",\n          \"title\": \"Fase 4: pe\\u00e7as e componentes modelados\",\n          \"status\": \"PASS\",\n          \"severity\": \"critical\",\n          \"kind\": \"automated\",\n          \"evidence\": {\n            \"missing_parts\": [],\n            \"shape_names\": [\n              \"flow_block\"\n            ]\n          },\n          \"detail\": null,\n          \"recommendation\": \"Gere ou corrija as pe\\u00e7as param\\u00e9tricas referenciadas no contrato.\"\n        }\n      ],\n      \"recommendation\": null\n    },\n    {\n      \"id\": \"manufacturing-phase\",\n      \"title\": \"Fase 6: fabrica\\u00e7\\u00e3o\",\n      \"status\": \"NOT_EVALUATED\",\n      \"severity\": \"major\",\n      \"kind\": \"automated\",\n      \"evidence\": null,\n      \"detail\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"recommendation\": null\n    }\n  ],\n  \"flow_paths\": [\n    {\n      \"id\": \"inlet-to-outlet\",\n      \"status\": \"FAIL\",\n      \"method\": \"sampled centerline plus 8-point cross-section against actual OCP B-rep solids\",\n      \"sample_step_mm\": 0.75,\n      \"clearance_radius_mm\": 1.5,\n      \"sampled_points\": 234,\n      \"blocking_sample\": {\n        \"segment\": 0,\n        \"point_mm\": [\n          29.361702127659576,\n          15.0,\n          15.0\n        ],\n        \"reason\": \"intersects_solid_brep\"\n      },\n      \"limitations\": [\n        \"approximate swept clearance; between-sample defects may remain\",\n        \"no CFD, pressure-drop, flow-rate, turbulence, seal, pump, or priming analysis\"\n      ]\n    }\n  ],\n  \"limits\": [\n    \"contract completeness is not engineering proof\",\n    \"contact-free CAD pairs do not prove structural retention or joint strength\",\n    \"judgment, loads, seals, physical fit and functional behavior require review/test\"\n  ]\n}\n\n"
+      }
+    },
+    {
+      "name": "C blocked channel detected in real solids",
+      "status": "PASS",
+      "evidence": {
+        "id": "inlet-to-outlet",
+        "status": "FAIL",
+        "method": "sampled centerline plus 8-point cross-section against actual OCP B-rep solids",
+        "sample_step_mm": 0.75,
+        "clearance_radius_mm": 1.5,
+        "sampled_points": 234,
+        "blocking_sample": {
+          "segment": 0,
+          "point_mm": [
+            29.361702127659576,
+            15.0,
+            15.0
+          ],
+          "reason": "intersects_solid_brep"
+        },
+        "limitations": [
+          "approximate swept clearance; between-sample defects may remain",
+          "no CFD, pressure-drop, flow-rate, turbulence, seal, pump, or priming analysis"
+        ]
+      }
+    },
+    {
+      "name": "command architecture validate --geometry",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": "cal Python and configuration plus declared source_inputs; excludes generated/cache/hidden paths and external runtime inputs\"\n            }\n          },\n          \"detail\": null,\n          \"recommendation\": \"Execute cad3d validate depois da \\u00faltima mudan\\u00e7a de geometria ou pose.\"\n        }\n      ],\n      \"recommendation\": null\n    },\n    {\n      \"id\": \"modeling-phase\",\n      \"title\": \"Fase 4: modelagem\",\n      \"status\": \"PASS\",\n      \"severity\": \"critical\",\n      \"kind\": \"automated\",\n      \"evidence\": null,\n      \"detail\": [\n        {\n          \"id\": \"component-model-links\",\n          \"title\": \"Fase 4: pe\\u00e7as e componentes modelados\",\n          \"status\": \"PASS\",\n          \"severity\": \"critical\",\n          \"kind\": \"automated\",\n          \"evidence\": {\n            \"missing_parts\": [],\n            \"shape_names\": [\n              \"flow_block\"\n            ]\n          },\n          \"detail\": null,\n          \"recommendation\": \"Gere ou corrija as pe\\u00e7as param\\u00e9tricas referenciadas no contrato.\"\n        }\n      ],\n      \"recommendation\": null\n    },\n    {\n      \"id\": \"manufacturing-phase\",\n      \"title\": \"Fase 6: fabrica\\u00e7\\u00e3o\",\n      \"status\": \"NOT_EVALUATED\",\n      \"severity\": \"major\",\n      \"kind\": \"automated\",\n      \"evidence\": null,\n      \"detail\": [\n        {\n          \"id\": \"physical-validation\",\n          \"title\": \"Valida\\u00e7\\u00e3o f\\u00edsica\",\n          \"status\": \"NOT_EVALUATED\",\n          \"severity\": \"major\",\n          \"kind\": \"engineering_judgment\",\n          \"evidence\": null,\n          \"detail\": null,\n          \"recommendation\": \"Registre resultados dimensionais e funcionais de prot\\u00f3tipo quando houver impress\\u00e3o f\\u00edsica.\"\n        }\n      ],\n      \"recommendation\": null\n    }\n  ],\n  \"flow_paths\": [\n    {\n      \"id\": \"inlet-to-outlet\",\n      \"status\": \"PASS\",\n      \"method\": \"sampled centerline plus 8-point cross-section against actual OCP B-rep solids\",\n      \"sample_step_mm\": 0.75,\n      \"clearance_radius_mm\": 1.5,\n      \"sampled_points\": 1098,\n      \"blocking_sample\": null,\n      \"limitations\": [\n        \"approximate swept clearance; between-sample defects may remain\",\n        \"no CFD, pressure-drop, flow-rate, turbulence, seal, pump, or priming analysis\"\n      ]\n    }\n  ],\n  \"limits\": [\n    \"contract completeness is not engineering proof\",\n    \"contact-free CAD pairs do not prove structural retention or joint strength\",\n    \"judgment, loads, seals, physical fit and functional behavior require review/test\"\n  ]\n}\n"
+      }
+    },
+    {
+      "name": "C corrected channel revalidated",
+      "status": "PASS",
+      "evidence": null
+    },
+    {
+      "name": "command init .",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": "Projeto CAD3D inicializado em: /home/rrattes/Documentos/engineering 3d/3d-engineering-evolution-20261019/docs/evaluations/workflow-gates-1.9.0-candidate.1/legacy-v1.4-promoted/D-phase-gate\n"
+      }
+    },
+    {
+      "name": "command architecture init --level product",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "tail": " Container 3d-engineering-evolution-20261019-cad3d-run-02aa9d5f5630 Creating \n Container 3d-engineering-evolution-20261019-cad3d-run-02aa9d5f5630 Created \nContrato criado: .cad3d/engineering.yaml; complete arquitetura antes de executar cad3d build.\n"
+      }
+    },
+    {
+      "name": "command build",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 3,
+        "tail": " Container 3d-engineering-evolution-20261019-cad3d-run-66335c08b710 Creating \n Container 3d-engineering-evolution-20261019-cad3d-run-66335c08b710 Created \n{\n  \"status\": \"FAIL\",\n  \"reason\": \"mandatory_workflow_gate_blocked\",\n  \"requested_gate\": \"mechanical_architecture\",\n  \"gate\": {\n    \"status\": \"BLOCKED\",\n    \"blocked_by\": [\n      \"functional_architecture\"\n    ]\n  },\n  \"gates\": {\n    \"requirements\": {\n      \"status\": \"FAIL\",\n      \"observed_status\": \"FAIL\",\n      \"reason\": \"phase_must_pass_before_advancement\"\n    },\n    \"functional_architecture\": {\n      \"status\": \"BLOCKED\",\n      \"blocked_by\": [\n        \"requirements\"\n      ]\n    },\n    \"mechanical_architecture\": {\n      \"status\": \"BLOCKED\",\n      \"blocked_by\": [\n        \"functional_architecture\"\n      ]\n    },\n    \"modeling\": {\n      \"status\": \"BLOCKED\",\n      \"blocked_by\": [\n        \"mechanical_architecture\"\n      ]\n    },\n    \"system_verification\": {\n      \"status\": \"BLOCKED\",\n      \"blocked_by\": [\n        \"modeling\"\n      ]\n    },\n    \"visual_review\": {\n      \"status\": \"BLOCKED\",\n      \"blocked_by\": [\n        \"system_verification\"\n      ]\n    },\n    \"product_design\": {\n      \"status\": \"BLOCKED\",\n      \"blocked_by\": [\n        \"visual_review\"\n      ]\n    },\n    \"manufacturing\": {\n      \"status\": \"BLOCKED\",\n      \"blocked_by\": [\n        \"system_verification\",\n        \"visual_review\"\n      ]\n    },\n    \"slicing\": {\n      \"status\": \"BLOCKED\",\n      \"blocked_by\": [\n        \"manufacturing\"\n      ]\n    },\n    \"physical_validation\": {\n      \"status\": \"BLOCKED\",\n      \"blocked_by\": [\n        \"manufacturing\"\n      ]\n    },\n    \"prototype_release\": {\n      \"status\": \"BLOCKED\",\n      \"blocked_by\": [\n        \"modeling\",\n        \"system_verification\",\n        \"visual_review\"\n      ]\n    }\n  },\n  \"next_step\": \"Feche requisitos, arquitetura funcional e mec\\u00e2nica; d\\u00ea disposi\\u00e7\\u00e3o expl\\u00edcita a warnings n\\u00e3o cr\\u00edticos.\"\n}\n\n"
+      }
+    }
+  ],
+  "workspace": "/home/rrattes/Documentos/engineering 3d/3d-engineering-evolution-20261019/docs/evaluations/workflow-gates-1.9.0-candidate.1/legacy-v1.4-promoted",
+  "artifacts": {
+    "A": "/home/rrattes/Documentos/engineering 3d/3d-engineering-evolution-20261019/docs/evaluations/workflow-gates-1.9.0-candidate.1/legacy-v1.4-promoted/A-box-with-removable-lid/build/outputs",
+    "B": "/home/rrattes/Documentos/engineering 3d/3d-engineering-evolution-20261019/docs/evaluations/workflow-gates-1.9.0-candidate.1/legacy-v1.4-promoted/B-captured-rail-support/build/outputs",
+    "C": "/home/rrattes/Documentos/engineering 3d/3d-engineering-evolution-20261019/docs/evaluations/workflow-gates-1.9.0-candidate.1/legacy-v1.4-promoted/C-three-chamber-flow/build/outputs"
+  }
+}

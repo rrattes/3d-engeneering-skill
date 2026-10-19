@@ -1,0 +1,8 @@
+id: three-chamber-flow-demo
+contact_tolerance_mm: 0.02
+components:
+  - {id: chamber-wall-block, part: flow_block, position_mm: [0, 0, 0], rotation_deg: [0, 0, 0]}
+interfaces: []
+constraints:
+  - {type: datum, note: XYZ in millimetres, inlet X10/Y15/Z5, outlet X80/Y15/Z23}
+assembly_steps: []

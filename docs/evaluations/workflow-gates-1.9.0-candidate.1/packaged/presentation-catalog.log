@@ -1,0 +1,17 @@
+MODULE_ROOT /tmp/packaged-suite/cli
+MODULE_SHA256 {"access_checks.py": "e1bc0d799ed6c755866bf941520303cecc3601f756783f79e5d68db6e58fa835", "artifact_publication.py": "c27c7c77721daba9f35f6c33fef8c22991d13e9605078e303a683fbeb41bb466", "brep_pairs.py": "77fcaedf5c00fcc0fe25680dad8eba962c9c15bba9da664ecea8f164ccca5fc0", "cad3d.py": "181370edbf7aa4f0496b0a2271a3b4c4b274d7423f5289a8e4ea35a8582a9891", "cad3d_visualization.py": "20386d67b2779e460e3bb8fb2176e5cd7973d3becfeb5f113ae0ca347193c96f", "calibration.py": "1497c2e733b8b55fea3a2ed8e6080fbeff670bca29de2c3edace925f0cfae761", "capability_commands.py": "3eebb651e77ba69355501804c6e0fad2069ef71bf9bae5ae887621e83b54769a", "commercial_components.py": "56912185e72dba86a36969a245b98e97d3d0ae8b43804e5de560dab726e75df1", "component_catalog.py": "9cd9fffdd9e4d2a9f0c23e90c87188459c66ec1cdace6453fb33e0edcaea394e", "face_references.py": "7aff2170b58099f9946d0f28b00903254adab8a8699075e0895f09df73066bf1", "fit_calibration.py": "391159d9179aec5f293b00c17be28f8a671536abb17a0504479c827fd7f39f28", "helical_motion.py": "e1fc4096090c65e6d5478ccb52dbb1a4561db9827780d5c9b0bc1fbc05fff789", "interface_library.py": "c1a8c40372eea6919ad471d438efa35b27881d52964c15269a56bf39beb928d7", "manufacturing.py": "a80da2a101542f91057fa0767a04eb18bd2d76fc299e25833af0d21ee8f7b6af", "motion_paths.py": "60d886025617dd78a449bafbca5a8bde4e8de1d5623c696d23ccbf57ebb5b9a0", "product_engineering.py": "1a8b51dc79dd496145a0b7fc942978c778cc671ef1f5c72a518318c6ae3054f2", "service_states.py": "c9fcc14ef526bc827b4b36a8ea85da9a1e75f83012d630b53881ae68826641fd", "slicer_bridge.py": "8342a4a2fab8c500ea566cdd068351e95a8f321297f730950bc42bddb3cd219a", "source_fingerprint.py": "36be6211774fda13d21171e59adf71eb001bb7dff3b538b31002b239a9f9e679", "structural_screening.py": "9b18e9ef6360e052c226a0c9b60e309b6e13a62571ebaf76bad770eb5d5bec1e", "technical_drawings.py": "072e695a41cab1dcb303c4601e7afc6b9958276f2969bed2625e3b01cd129ab1", "tolerance_stack.py": "c55df4c097545486310a3db2bca96b8d77e22c4d1d19574f9839f6b5818de539", "validation.py": "526ee1f058b8eec364bd2c205844268c706ca7ae16de76a32054f8e87b9b98df", "variant_campaign.py": "f3f01d935033d20e4839aedb4a8161b1c07bf098d27deefca61c1598143a6f0d", "workflow_commands.py": "a31ed022edc1c5bf4062710b23952842c9193b9cc11381eee6489728aea945fb", "workflow_gates.py": "578bf4712afae75cdae2a8a63c0ec4b3bf96316f12b8bc9cae57e9527de3012c"}
+/usr/local/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+  prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+/usr/local/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  parse = parser.parseString(pattern)
+/usr/local/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  parser.resetCache()
+/usr/local/lib/python3.12/site-packages/matplotlib/_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+  ParserElement.enablePackrat()
+In /usr/local/lib/python3.12/site-packages/matplotlib/mpl-data/stylelib/classic.mplstyle: 'parseString' deprecated - use 'parse_string'
+In /usr/local/lib/python3.12/site-packages/matplotlib/mpl-data/stylelib/classic.mplstyle: 'resetCache' deprecated - use 'reset_cache'
+..
+----------------------------------------------------------------------
+Ran 2 tests in 1.994s
+
+OK

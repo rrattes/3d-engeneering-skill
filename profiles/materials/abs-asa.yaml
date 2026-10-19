@@ -1,0 +1,13 @@
+name: ABS/ASA (generic initial profile)
+calibrated: false
+fit_clearance_mm: 0.40
+shrinkage_percent: 0.0
+min_wall_mm: 1.6
+notes: Verify enclosure, ventilation, bed and hotend compatibility on the exact printer.
+fit_ranges_mm:
+  sliding: [0.25, 0.55]
+  press_fit: [-0.25, -0.05]
+  pin_hole: [0.25, 0.55]
+  removable_cover: [0.30, 0.65]
+  rail_guide: [0.25, 0.55]
+fit_ranges_status: generic uncalibrated starting values; verify with dimensional coupons on each printer material slicer combination

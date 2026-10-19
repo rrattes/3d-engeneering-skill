@@ -1,0 +1,80 @@
+engineering:
+  schema_version: 1
+  workflow_level: product
+  model_gate: true
+  project:
+    name: enclosure-fit-demonstrator
+    class: mechanical_enclosure
+    purpose: Protect a generic item while providing a removable top cover.
+    units: mm
+  operating_conditions:
+    - {id: ENV-1, condition: dry indoor bench use, status: design_assumption}
+  measurements:
+    - {id: ENV-2, quantity: nominal envelope, value_mm: [60, 40, 24], confidence: assumption, uncertainty: demonstrator dimensions are synthetic}
+  external_interfaces:
+    - {id: EXT-1, type: cover interface, description: removable cover fitted over body rim}
+  acceptance_criteria:
+    - {id: AC-1, method: profile_fit_check, threshold: clearance within PETG profile band}
+    - {id: AC-2, method: sampled_linear_removal, threshold: no B-rep collision on declared lift path}
+  risks_and_unknowns:
+    - {id: R-1, severity: major, status: open, description: printed fit not physically calibrated}
+  requirements:
+    - id: REQ-COVER-FIT
+      description: Lid skirt fits the body opening within the selected fit profile.
+      subsystem: enclosure
+      components: [enclosure-body, service-lid]
+      critical: true
+      verification:
+        method: evidence
+        status: PASS
+        evidence:
+          - {path: build/outputs/validation.json, json_pointer: /assembly/fit_checks/0/status, expected: PASS}
+    - id: REQ-COVER-REMOVAL
+      description: Lid can be lifted clear along the declared service path.
+      subsystem: closure
+      components: [enclosure-body, service-lid]
+      critical: true
+      verification:
+        method: evidence
+        status: PASS
+        evidence:
+          - {path: build/outputs/validation.json, json_pointer: /assembly/assembly_sequence/status, expected: PASS}
+  functional_architecture:
+    subsystems:
+      - {id: enclosure, purpose: Bound and support the protected volume}
+      - {id: closure, purpose: Restrict access while allowing service removal}
+    flows:
+      - {id: service-motion, kind: motion, path: [enclosure, closure]}
+    operating_modes:
+      - {id: closed, description: lid seated on body rim}
+      - {id: service, description: lid raised clear of opening}
+    failure_modes:
+      - {id: loose-cover, effect: cover can disengage under vibration, control: calibrate fit and add retention if required}
+  mechanical_architecture:
+    components:
+      - id: enclosure-body
+        part: body
+        function: Support the enclosure walls and locate the cover.
+        retention: {method: fixed_to_datum, datum: support plane Z0, fastener_interface: external support}
+      - id: service-lid
+        part: lid
+        function: Close the upper opening and provide service access.
+        retention: {method: gravity_seat, interface_ids: [cover-fit], held_axes: [x, y], release_axis: z}
+    interfaces:
+      - id: cover-fit
+        components: [enclosure-body, service-lid]
+        kind: sliding_removable_cover
+        positioning: body rim plane Z=24 and shared XY center datum
+        tolerance_profile: selected PETG profile
+    assembly_steps:
+      - {id: fit-cover, sequence: 1, action: lower lid skirt into body opening}
+    maintenance_access:
+      - {id: top-opening, action: lift service-lid along +Z to expose the cavity}
+    print_split:
+      - {part: body, orientation: open-face-up}
+      - {part: lid, orientation: plate-face-down}
+  manufacturing:
+    physical_validation: NOT_EVALUATED
+  visualization:
+    hidden_components: [service-lid]
+    critical_interfaces: [cover-fit]

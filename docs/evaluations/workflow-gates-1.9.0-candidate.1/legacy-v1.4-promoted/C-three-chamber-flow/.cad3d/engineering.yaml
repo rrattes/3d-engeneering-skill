@@ -1,0 +1,71 @@
+engineering:
+  schema_version: 1
+  workflow_level: product
+  model_gate: true
+  project:
+    name: three-chamber-flow-demonstrator
+    class: passive_fluid_system
+    purpose: Demonstrate connected fluid volume through three chambers and two baffle openings.
+    units: mm
+  operating_conditions:
+    - {id: ENV-1, condition: gravity-driven open-top water path at bench scale, status: demonstrator}
+  measurements:
+    - {id: DEMO-1, quantity: chamber envelope, value_mm: [90, 30, 30], confidence: assumption, uncertainty: synthetic test dimensions}
+  external_interfaces:
+    - {id: PORT-IN, type: inlet, center_mm: [10, 15, 5]}
+    - {id: PORT-OUT, type: outlet, center_mm: [80, 15, 23]}
+  acceptance_criteria:
+    - {id: AC-1, method: sampled swept-clearance against B-rep, threshold: 1.5 mm radius unobstructed from inlet to outlet}
+    - {id: AC-2, method: physical bench test, threshold: measure flow and verify seals before using a real fluid system}
+  risks_and_unknowns:
+    - {id: R-1, severity: major, status: open, description: no CFD, pressure loss or flow-rate analysis has been performed}
+  requirements:
+    - id: REQ-FLOW-CONTINUITY
+      description: Declared route remains open through all chambers and the modeled under/over baffle openings.
+      subsystem: fluid-path
+      components: [chamber-wall-block]
+      critical: true
+      verification:
+        method: flow_path
+        target: inlet-to-outlet
+        status: NOT_EVALUATED
+  functional_architecture:
+    subsystems:
+      - {id: inlet, purpose: Admit fluid at the inlet port}
+      - {id: chamber-one, purpose: Carry fluid to the first baffle}
+      - {id: chamber-two, purpose: Route fluid between baffles}
+      - {id: chamber-three, purpose: Receive fluid after the second baffle}
+      - {id: fluid-path, purpose: Preserve connected open volume between declared ports}
+      - {id: outlet, purpose: Release fluid at the outlet port}
+    flows:
+      - id: inlet-to-outlet
+        kind: fluid
+        path: [inlet, chamber-one, chamber-two, chamber-three, outlet]
+        geometry_check:
+          domain_bbox_mm: [[3, 3, 3], [87, 27, 27]]
+          centerline_mm: [[10, 15, 5], [40, 15, 5], [50, 15, 5], [50, 15, 23], [80, 15, 23]]
+          clearance_radius_mm: 1.5
+          sample_step_mm: 0.75
+    operating_modes:
+      - {id: normal-flow, description: fluid follows the under-baffle then over-baffle route}
+    failure_modes:
+      - {id: blocked-channel, effect: no continuous fluid path, control: inspect declared path against B-rep and perform physical flow test}
+      - {id: excessive-loss, effect: low downstream flow, control: hydraulic test; no CFD is claimed}
+  mechanical_architecture:
+    components:
+      - id: chamber-wall-block
+        part: flow_block
+        function: Form the floor, external chamber walls and alternating baffles.
+        retention: {method: monolithic}
+    interfaces: []
+    assembly_steps:
+      - {id: none, not_applicable_reason: one fused demonstration component}
+    maintenance_access:
+      - {id: open-top, action: inspect chamber interiors from above}
+    print_split:
+      - {part: flow_block, orientation: base-on-bed; verify supports in real slicer}
+  manufacturing:
+    physical_validation: NOT_EVALUATED
+  visualization:
+    hidden_components: []
+    critical_interfaces: []

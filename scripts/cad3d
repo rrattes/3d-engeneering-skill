@@ -1,0 +1,129 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat <<'USAGE'
+usage: cad3d {doctor|init <project>|build|validate|render|export|report|test|architecture|workflow|review|calibration|interfaces|drawings|variants|structure|slicer|slice|slice-report} [options]
+
+init creates a project template in a new or existing directory without replacing files.
+architecture init|validate and review manage the product engineering contract and review.
+workflow init|check enforces dependency gates from requirements through visual review.
+CAD commands run in cad3d-engineering Docker. `slicer` and `slice` run the separate cad3d-orca container.
+USAGE
+}
+
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+  usage
+  exit 0
+fi
+
+# Resolve the symlink so the platform remains discoverable from ~/.local/bin.
+SCRIPT_PATH="$(readlink -f -- "${BASH_SOURCE[0]}")"
+ROOT="$(cd -- "$(dirname -- "$SCRIPT_PATH")/.." && pwd -P)"
+COMPOSE_FILE="$ROOT/compose.yaml"
+COMPOSE_ARGS=(-f "$COMPOSE_FILE")
+# Deliberate opt-in source overlay; normal execution uses packaged images.
+if [[ "${CAD3D_DEV_SOURCE:-0}" == "1" ]]; then
+  COMPOSE_ARGS+=(-f "$ROOT/compose.dev.yaml")
+fi
+IMAGE="${CAD3D_IMAGE:-cad3d-engineering:1.9.0}"
+
+if [[ "${1:-}" == "init" && "${2:-}" =~ ^(-h|--help)$ ]]; then
+  echo 'usage: cad3d init <project-directory>'
+  exit 0
+fi
+
+if [[ "${1:-}" == "init" ]]; then
+  shift
+  [[ $# -eq 1 ]] || { echo 'ERROR: uso: cad3d init <project-directory>' >&2; exit 2; }
+  template="$ROOT/templates/project"
+  dest="$1"
+  if [[ -e "$dest" && ! -d "$dest" ]]; then
+    echo "ERROR: destino não é um diretório: $dest" >&2
+    exit 2
+  fi
+  mkdir -p -- "$dest"
+  dest="$(cd -- "$dest" && pwd -P)"
+  shopt -s dotglob nullglob
+  entries=("$template"/*)
+  shopt -u dotglob nullglob
+  for entry in "${entries[@]}"; do
+    name="$(basename -- "$entry")"
+    if [[ -e "$dest/$name" || -L "$dest/$name" ]]; then
+      echo "ERROR: init não sobrescreve '$dest/$name'; remova ou mova o item conflitante e tente novamente" >&2
+      exit 2
+    fi
+  done
+  cp -a -- "$template/." "$dest/"
+  echo "Projeto CAD3D inicializado em: $dest"
+  exit 0
+fi
+
+if [[ $# -eq 0 ]]; then
+  usage >&2
+  exit 2
+fi
+run_orca() {
+  local operation="$1"
+  shift
+  if ! command -v docker >/dev/null 2>&1 || ! docker compose version >/dev/null 2>&1 || ! docker info >/dev/null 2>&1; then
+    echo 'ERROR: Docker Engine e o plugin Docker Compose precisam estar disponíveis para executar o motor Orca isolado.' >&2
+    exit 125
+  fi
+  export CAD3D_PROJECT="$(pwd -P)"
+  export CAD3D_UID="$(id -u)"
+  export CAD3D_GID="$(id -g)"
+  local image="cad3d-orca:2.4.2-cad3d.1.4.2"
+  if [[ "$operation" == "build" ]]; then
+    exec docker compose "${COMPOSE_ARGS[@]}" build orca
+  fi
+  if ! docker image inspect "$image" >/dev/null 2>&1; then
+    echo "ERROR: imagem $image indisponível. Construa-a com: cad3d slicer build" >&2
+    exit 125
+  fi
+  exec docker compose "${COMPOSE_ARGS[@]}" run --rm --no-deps --user "$CAD3D_UID:$CAD3D_GID" orca "$operation" "$@"
+}
+
+if [[ "${1:-}" == "slicer" ]]; then
+  shift
+  case "${1:-}" in
+    build) shift; [[ $# -eq 0 ]] || { echo 'usage: cad3d slicer build' >&2; exit 2; }; run_orca build ;;
+    doctor) shift; run_orca doctor "$@" ;;
+    preflight) shift; run_orca preflight "$@" ;;
+    *) echo 'usage: cad3d slicer {build|doctor|preflight}' >&2; exit 2 ;;
+  esac
+fi
+if [[ "${1:-}" == "slice" ]]; then
+  shift
+  run_orca slice "$@"
+fi
+if [[ "${1:-}" == "slice-report" ]]; then
+  shift
+  [[ $# -eq 0 ]] || { echo 'usage: cad3d slice-report' >&2; exit 2; }
+  exec python3 "$ROOT/scripts/slicer-report.py"
+fi
+if [[ ! -f "$COMPOSE_FILE" ]]; then
+  echo "ERROR: compose.yaml da plataforma não encontrado: $COMPOSE_FILE" >&2
+  exit 2
+fi
+if ! command -v docker >/dev/null 2>&1; then
+  echo 'ERROR: Docker CLI não está no PATH. Instale/inicie Docker no host e tente novamente.' >&2
+  exit 127
+fi
+if ! docker compose version >/dev/null 2>&1; then
+  echo 'ERROR: Docker Compose plugin não está disponível (`docker compose`).' >&2
+  exit 127
+fi
+if ! docker info >/dev/null 2>&1; then
+  echo 'ERROR: Docker Engine indisponível ou sem permissão para este usuário.' >&2
+  exit 125
+fi
+if ! docker image inspect "$IMAGE" >/dev/null 2>&1; then
+  echo "ERROR: imagem $IMAGE não encontrada. Construa-a uma vez com: docker compose -f '$COMPOSE_FILE' build" >&2
+  exit 125
+fi
+
+export CAD3D_PROJECT="$(pwd -P)"
+export CAD3D_UID="$(id -u)"
+export CAD3D_GID="$(id -g)"
+exec docker compose "${COMPOSE_ARGS[@]}" run --rm --no-deps --user "$CAD3D_UID:$CAD3D_GID" cad3d "$@"

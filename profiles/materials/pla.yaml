@@ -1,0 +1,13 @@
+name: PLA (generic initial profile)
+calibrated: false
+fit_clearance_mm: 0.30
+shrinkage_percent: 0.0
+min_wall_mm: 1.2
+notes: Tune using printed calibration coupons for the exact printer, filament, orientation and slicer profile.
+fit_ranges_mm:
+  sliding: [0.20, 0.45]
+  press_fit: [-0.25, -0.05]
+  pin_hole: [0.20, 0.45]
+  removable_cover: [0.25, 0.55]
+  rail_guide: [0.20, 0.45]
+fit_ranges_status: generic uncalibrated starting values; verify with dimensional coupons on each printer material slicer combination
